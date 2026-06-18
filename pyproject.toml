@@ -16,6 +16,7 @@ flake8 = "^7.3.0"
 isort = "^8.0.1"
 black = "^26.5.1"
 ipython = "^9.14.1"
+django-filter = "^25.2"
 
 
 [tool.poetry.group.dev.dependencies]
