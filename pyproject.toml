@@ -15,7 +15,13 @@ python-dotenv = "^1.2.2"
 flake8 = "^7.3.0"
 isort = "^8.0.1"
 black = "^26.5.1"
+ipython = "^9.14.1"
 
+
+[tool.poetry.group.dev.dependencies]
+flake8 = "^7.3.0"
+isort = "^8.0.1"
+black = "^26.5.1"
 
 [build-system]
 requires = ["poetry-core"]
