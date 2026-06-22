@@ -1,0 +1,42 @@
+[
+{
+    "model": "materials.course",
+    "pk": 1,
+    "fields": {
+        "name": "Math",
+        "description": "High math",
+        "preview": ""
+    }
+},
+{
+    "model": "materials.course",
+    "pk": 2,
+    "fields": {
+        "name": "Russian language",
+        "description": "native Russian",
+        "preview": ""
+    }
+},
+{
+    "model": "materials.lesson",
+    "pk": 1,
+    "fields": {
+        "name": "Lesson 1",
+        "description": "Wolcome",
+        "preview": "",
+        "video_link": "https://welcome/lesson/1",
+        "course": 1
+    }
+},
+{
+    "model": "materials.lesson",
+    "pk": 2,
+    "fields": {
+        "name": "Lesson 2",
+        "description": "Math",
+        "preview": "",
+        "video_link": "https://math/lesson/2",
+        "course": 2
+    }
+}
+]
