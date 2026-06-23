@@ -3,17 +3,19 @@ from rest_framework.permissions import IsAuthenticated
 
 from materials.models import Course, Lesson
 from materials.serializers import CourseSerializer, LessonSerializer
-from users.permissions import IsModerators
+from users.permissions import IsModerators, IsOwner
 
 class CourseViewSet(viewsets.ModelViewSet):
     serializer_class = CourseSerializer
     queryset = Course.objects.all()
 
     def get_permissions(self):
-        if self.action in ["create", "destroy"]:
-            self.permission_classes = (~IsModerators,)
+        if self.action == "create":
+            self.permission_classes = (IsAuthenticated, ~IsModerators,)
         elif self.action in ["update", "retrieve", "list"]:
-            self.permission_classes = (IsModerators,)
+            self.permission_classes = (IsAuthenticated, IsModerators | IsOwner)
+        elif self.action == "destroy":
+            self.permission_classes = (IsAuthenticated, IsOwner, ~IsModerators)
 
         return super().get_permissions()
 
@@ -34,11 +36,13 @@ class LessonCreateView(generics.CreateAPIView):
 class LessonListView(generics.ListAPIView):
     queryset = Lesson.objects.all()
     serializer_class = LessonSerializer
+    permission_classes = [IsAuthenticated, IsModerators | IsOwner]
 
 
 class LessonDetailView(generics.RetrieveAPIView):
     queryset = Lesson.objects.all()
     serializer_class = LessonSerializer
+    permission_classes = [IsAuthenticated, IsModerators | IsOwner]
 
 
 class LessonUpdateView(generics.UpdateAPIView):
@@ -49,4 +53,4 @@ class LessonUpdateView(generics.UpdateAPIView):
 class LessonDeleteView(generics.DestroyAPIView):
     queryset = Lesson.objects.all()
     serializer_class = LessonSerializer
-    permission_classes = [IsAuthenticated, ~IsModerators]
+    permission_classes = [IsAuthenticated, ~IsModerators | IsOwner]
