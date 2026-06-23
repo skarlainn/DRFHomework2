@@ -1,7 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
-from materials.models import Course, Lesson
 
 
 class User(AbstractUser):
@@ -37,6 +36,8 @@ class User(AbstractUser):
 
 
 class Payment(models.Model):
+    from materials.models import Course, Lesson
+
     user = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
