@@ -38,7 +38,6 @@ class UserDeleteView(generics.DestroyAPIView):
     serializer_class = UserSerializer
 
 
-
 class PaymentListView(generics.ListAPIView):
     queryset = Payment.objects.all()
     serializer_class = PaymentSerializer
