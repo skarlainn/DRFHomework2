@@ -43,7 +43,10 @@ class Payment(models.Model):
         verbose_name="Пользователь",
         help_text="Выберите пользователя",
         related_name="payments",
+        blank=True,
+        null=True,
     )
+
     date = models.DateField(verbose_name="Дата оплаты", auto_now_add=True)
     course = models.ForeignKey(
         Course,
