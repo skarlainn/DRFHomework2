@@ -103,4 +103,3 @@ class SubscriptionAPITestCase(APITestCase):
         data = response.json()
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(data.get("message"), "Подписка добавлена")
-
