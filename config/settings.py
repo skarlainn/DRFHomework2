@@ -160,19 +160,19 @@ CELERY_TIMEZONE = TIME_ZONE
 CELERY_TASK_TRACK_STARTED = True
 CELERY_TASK_TIME_LIMIT = 30 * 60
 
-#CELERY_BEAT_SCHEDULE = {
-#    'task-name': {
-#        'task': 'myapp.tasks.my_task',
-#        'schedule': timedelta(days=1),
-#    },
-#}
-#
-#CACHES = {
-#    'default': {
-#        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
-#        'LOCATION': 'redis://127.0.0.1:6379/1',
-#    }
-#}
+CELERY_BEAT_SCHEDULE = {
+    'check_last_login': {
+        'task': 'users.tasks.check_last_login',
+        'schedule': timedelta(days=1),
+    },
+}
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+        'LOCATION': 'redis://127.0.0.1:6379/0',
+    }
+}
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.yandex.ru'
