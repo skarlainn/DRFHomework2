@@ -3,6 +3,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.generics import get_object_or_404
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from materials.tasks import send_mail_about_update_course
 from materials.models import Course, Lesson, Subscription
 from materials.serializers import CourseSerializer, LessonSerializer
 from materials.paginators import LessonCoursePagination
@@ -30,6 +31,10 @@ class CourseViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         course = serializer.save(owner=self.request.user)
         course.save()
+
+    def perform_update(self, serializer):
+        course = serializer.save()
+        send_mail_about_update_course.delay(course_id=course.pk)
 
     def get_queryset(self):
         qs = super().get_queryset()
