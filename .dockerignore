@@ -1,0 +1,10 @@
+README.md
+htmlcov/
+static/
+.env.sample
+.git
+.gitignore
+.venv
+__pycache__
+*.pyc
+test_db.sqlite3
