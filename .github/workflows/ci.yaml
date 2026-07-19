@@ -61,7 +61,6 @@ jobs:
           source: "config, materials, users, manage.py, requirements.txt, docker-compose.yml, Dockerfile, nginx/"
           target: ${{ secrets.DEPLOY_DIR }}
           overwrite: true
-          rm: true
 
   run_server:
     needs: [ copy_files_in_server ]
