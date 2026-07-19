@@ -12,6 +12,9 @@ services:
         condition: service_healthy
     env_file:
       - .env
+    environment:
+      - DEBUG=True
+      - SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }}
 
   nginx:
     build:
