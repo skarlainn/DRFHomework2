@@ -14,7 +14,7 @@ services:
       - .env
     environment:
       - DEBUG=True
-      - SECRET_KEY=${{ secrets.SECRET_KEY }}
+      - SECRET_KEY=${SECRET_KEY}
 
   nginx:
     build:
