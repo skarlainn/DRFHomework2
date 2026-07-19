@@ -26,7 +26,8 @@ jobs:
     needs: lint
     runs-on: ubuntu-latest
     env:
-      SECRET_KEY: test_secret_key
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
+      DEBUG: False
     steps:
       - name: Check out code
         uses: actions/checkout@v3
